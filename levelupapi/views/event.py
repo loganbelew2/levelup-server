@@ -16,6 +16,7 @@ class EventView(ViewSet):
 
     def list(self, request):
        events = Event.objects.all()
+
        serializer = EventSerializer(events, many=True)
        return Response(serializer.data)
 

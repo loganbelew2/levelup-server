@@ -7,7 +7,8 @@
             "organizer": 1,
             "date": "2023-05-17",
             "location": " 1333 hopper court nashville",
-            "attendees": [1]
+            "attendees": [1],
+            "gameId": 1
         }
     },
     {
@@ -18,18 +19,8 @@
             "organizer": 1,
             "date": "2023-10-05",
             "location": " 2452 trinity lane Memphis",
-            "attendees": [1]
-        }
-    },
-    {
-        "model": "levelupapi.event",
-        "pk": 2,
-        "fields": {
-            "title": "Caves and Chimeras' children",
-            "organizer": 1,
-            "date": "2023-10-05",
-            "location": " 2452 trinity lane Memphis",
-            "attendees": [3, 5, 10]
+            "attendees": [1],
+            "gameId": 2
         }
     }
    
