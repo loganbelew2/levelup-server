@@ -8,4 +8,4 @@ class Event(models.Model):
     date = models.DateField( auto_now = False, auto_now_add = False)
     location = models.CharField(max_length=50)
     attendees = models.ManyToManyField('Gamer', through= 'EventLog')
-    gameId = models.ForeignKey('Game', on_delete=models.CASCADE, related_name='gameEvents')
+    game = models.ForeignKey('Game', on_delete=models.CASCADE, related_name='gameEvents')

@@ -1,1 +1,0 @@
-DROP TABLE levelupapi_event
