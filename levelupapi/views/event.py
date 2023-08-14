@@ -13,19 +13,25 @@ class EventView(ViewSet):
        serializer = EventSerializer(event)
        return Response(serializer.data)
 
+    def filter_events_by_game(events, game_id):
+        filtered_events = []
+        for event in events:
+            if event.game_id == game_id:
+                filtered_events.append(event)
+        return filtered_events
+
 
     def list(self, request):
-       events = Event.objects.all()
-       
-       if 'game' in request.query_params:
-           game_id = request.query_params['game']
-           events = filter(lambda event: event.game_id == game_id, events)
-           return events
-       else:
-           pass
+        events = Event.objects.all()
+    
+        if 'game' in request.query_params:
+            game_id = int(request.query_params['game'])
+            events = filter(lambda event: event.game_id == game_id, events)
+        else:
+            pass
+        serializer = EventSerializer(events, many=True)
+        return Response(serializer.data)
 
-       serializer = EventSerializer(events, many=True)
-       return Response(serializer.data)
 
 class EventSerializer(serializers.ModelSerializer):
     """JSON serializer for event types
