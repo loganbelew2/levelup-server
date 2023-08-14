@@ -5,7 +5,9 @@
         "fields": {
             "title": "scrabble",
             "type": 1,
-            "gamer": 1
+            "maker": 1,
+            "number_of_players": 2,
+            "skill_level": 1
         }
     },
     {
@@ -14,7 +16,9 @@
         "fields": {
             "title": "Caves and Chimeras",
             "type": 2,
-            "gamer": 1
+            "maker": 1,
+            "number_of_players": 3,
+            "skill_level" : 5
         }
     }
 ]
