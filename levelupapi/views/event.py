@@ -16,6 +16,13 @@ class EventView(ViewSet):
 
     def list(self, request):
        events = Event.objects.all()
+       
+       if 'game' in request.query_params:
+           game_id = request.query_params['game']
+           events = filter(lambda event: event.game_id == game_id, events)
+           return events
+       else:
+           pass
 
        serializer = EventSerializer(events, many=True)
        return Response(serializer.data)
@@ -25,4 +32,4 @@ class EventSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Event
-        fields = ('id', 'title', 'date', 'location', 'organizer_id')
+        fields = ('id', 'title', 'date', 'location', 'organizer_id', 'game_id')
