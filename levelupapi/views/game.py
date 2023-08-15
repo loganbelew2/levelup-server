@@ -26,16 +26,15 @@ class GameView(ViewSet):
             Response -- JSON serialized game instance
         """
         gamer = Gamer.objects.get(user=request.auth.user)
-        game_type = GameType.objects.get(pk=request.data["game_type"])
+        game_type_id = GameType.objects.get(pk=request.data["game_type"])
 
         game = Game.objects.create(
-            title=request.data["title"],
             maker=gamer,
+            title=request.data["title"],
             number_of_players=request.data["number_of_players"],
             skill_level=request.data["skill_level"],
-            type=game_type
+            type=game_type_id
         )
-        game.save()
         serializer = GameSerializer(game)
         return Response(serializer.data, status=status.HTTP_201_CREATED )
 
@@ -48,4 +47,4 @@ class GameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
         fields = ('id', 'title', 'maker', 'type', 'skill_level', 'number_of_players')
-        depth = 1
+        depth = 2
