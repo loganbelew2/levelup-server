@@ -33,7 +33,7 @@ class GameView(ViewSet):
             title=request.data["title"],
             number_of_players=request.data["number_of_players"],
             skill_level=request.data["skill_level"],
-            type=game_type_id
+            game_type =game_type_id
         )
         serializer = GameSerializer(game)
         return Response(serializer.data, status=status.HTTP_201_CREATED )
@@ -51,7 +51,11 @@ class GameView(ViewSet):
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
-
+    def destroy(self, request, pk):
+        game = Game.objects.get(pk=pk)
+        game.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+        
 
 
 class GameSerializer(serializers.ModelSerializer):
@@ -59,5 +63,5 @@ class GameSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Game
-        fields = ('id', 'title', 'maker', 'type', 'skill_level', 'number_of_players')
+        fields = ('id', 'title', 'maker', 'game_type', 'skill_level', 'number_of_players')
         depth = 2

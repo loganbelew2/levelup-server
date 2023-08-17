@@ -58,8 +58,10 @@ class EventView(ViewSet):
         event.organizer = organizer
         event.save()
         
-
-        return Response(None, status=status.HTTP_204_NO_CONTENT)
+    def destroy(self, request, pk):
+        event = Event.objects.get(pk=pk)
+        event.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)    
 class EventSerializer(serializers.ModelSerializer):
     """JSON serializer for event types
     """
